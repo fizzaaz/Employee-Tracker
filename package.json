@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/fizzaaz/Employee-Tracker.gi/issues"
   },
-  "homepage": "https://github.com/fizzaaz/Employee-Tracker.gi#readme"
+  "homepage": "https://github.com/fizzaaz/Employee-Tracker.gi#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5"
+  }
 }

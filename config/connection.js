@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 require('dotenv').config();
 
 // Connect to database
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
   {
     host: 'localhost',
     // MySQL username,
@@ -14,3 +14,5 @@ const db = mysql.createConnection(
   },
   console.log(`sucessfully Connected to EmployeeDB database.`)
 );
+
+module.exports = connection;

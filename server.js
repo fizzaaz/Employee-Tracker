@@ -1,4 +1,4 @@
-const connection = require("config/connectin.js")
+const connection = require("config/connection.js")
 
 //========== Connection ID ==========================//
 connection.connect(function(err) {
