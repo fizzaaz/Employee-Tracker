@@ -46,7 +46,16 @@ const promptUser=()=>
      {
          type:"list",
          name:"questions",
-         message:
+         message:"What would you like to do?",
+         choices:[
+           "VIEW ALL DEPARTMENTS", 
+           "VIEW ALL ROLES",
+           "VIEW ALL EMPLOYEES",
+           "ADD A DEPARTMENT",
+           "ADD A ROLE", 
+           "ADD AN EMPLOYEE", 
+           "UPDATE AN EMPLOYEE ROLE"
+         ]
 
      })   
 }
