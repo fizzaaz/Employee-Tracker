@@ -1,10 +1,10 @@
 //========================================================//
 //==================== DEPENDENCIES=======================//
 //========================================================//
-const connection = require("./config/connection") 
+const connection = require("./config/connection")
 const chalk = require('chalk');
 const figlet = require('figlet');
-const inquirer=require("inquirer");
+const inquirer = require("inquirer");
 const { listenerCount } = require("events");
 
 
@@ -13,18 +13,18 @@ const { listenerCount } = require("events");
 //========================================================//
 connection.connect((error) => {
     if (error) throw error;
-    header();   
-  });
+    header();
+    promptUser();
+});
 
 //========================================================//
 //======================= HEADER =========================//
 //========================================================//
-const header=()=>
-{
+const header = () => {
     console.log(``);
     console.log(chalk.magenta.bold(`====================================================================================`));
     console.log(chalk.yellowBright.bold(`************************************************************************************`));
-   
+
     console.log(chalk.magenta.bold(`====================================================================================`));
 
     console.log(``);
@@ -36,26 +36,36 @@ const header=()=>
     console.log(chalk.yellowBright.bold(`************************************************************************************`));
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
- 
+
 //========================================================//
 //==================== PROMPT USER =======================//
 //========================================================//
-const promptUser=()=>
-{
- inquirer.prompt(
-     {
-         type:"list",
-         name:"questions",
-         message:"What would you like to do?",
-         choices:[
-           "VIEW ALL DEPARTMENTS", 
-           "VIEW ALL ROLES",
-           "VIEW ALL EMPLOYEES",
-           "ADD A DEPARTMENT",
-           "ADD A ROLE", 
-           "ADD AN EMPLOYEE", 
-           "UPDATE AN EMPLOYEE ROLE"
-         ]
+const promptUser = () => {
+    inquirer.prompt(
+        {
+            type: "list",
+            name: "questions",
+            message: "What would you like to do?",
+            choices: [
+                "VIEW ALL EMPLOYEES",
+                "VIEW ALL DEPARTMENTS",
+                "VIEW ALL ROLES",
+                "VIEW EMPLOYEES BY MANAGER",
+                "VIEW EMPLOYEES BY DEPARTMENT",
+                "ADD A DEPARTMENT",
+                "ADD A ROLE",
+                "ADD AN EMPLOYEE",
+                "UPDATE AN EMPLOYEE'S ROLE",
+                "UPDATE EMPLOYEE'S MANAGERS",
+                "DELETE DEPARTMENT",
+                "DELETE ROLE",
+                "DELETE AN EMPLOYEE",
+                "VIEW TOTAL BUDGET OF A DEPARTMENT"
+            ]
 
-     })   
+        }).then(choices => {
+            if (choice === "EMPLOYEES")
+                console.log("kjfkds")
+        })
+
 }
