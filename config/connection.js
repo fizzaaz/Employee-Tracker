@@ -1,5 +1,6 @@
 // Import and require mysql2
 const mysql = require('mysql2');
+require('dotenv').config();
 
 // Connect to database
 const db = mysql.createConnection(
@@ -8,7 +9,7 @@ const db = mysql.createConnection(
     // MySQL username,
     user: 'root',
     // MySQL password
-    password: 'moz12345',
+    password: process.env.MYSQL_PASSWORD,
     database: 'EmployeeDB'
   },
   console.log(`Connected to the inventory_db database.`)
