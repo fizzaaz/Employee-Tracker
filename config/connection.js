@@ -9,7 +9,7 @@ const connection = mysql.createConnection(
     // MySQL username,
     user: 'root',
     // MySQL password
-    password: moz12345,
+    password: "moz12345",
     database: 'EmployeeDB'
   },
   console.log(`sucessfully Connected to EmployeeDB database.`)
