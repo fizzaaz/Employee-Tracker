@@ -13,11 +13,13 @@ CREATE TABLE department(
 )
 
 -- CREATING ROLE TABLE ----
-CREATE TABLE ROLE (
+CREATE TABLE role (
     id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
     title  VARCHAR(30),
     salary DECIMAL(10,2),
-    department_id INTEGER 
+    department_id INTEGER,
+    --INT to hold reference to department role belongs to-
+    FOREIGN KEY department_id REFERENCES department(id)
 )
 
 -- CREATING EMPLOYEE TABLE ----
@@ -26,7 +28,10 @@ CREATE TABLE employee (
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role_id INTEGER,
-    manager_id INTEGER    
+    --INT to hold reference to another employee that is manager of the current employee--
+    manager_id INTEGER,
+    --INT to hold reference to employee role--
+    FOREIGN KEY role_id REFERENCES role(id)    
 )
 
 
