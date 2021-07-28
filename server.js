@@ -1,8 +1,17 @@
-const connection = require("config/connection.js")
+const connection = require("./config/connection")
+const chalk = require('chalk');
+const figlet = require('figlet');
+
 
 //========== Connection ID ==========================//
-connection.connect(function(err) {
-    if (err) throw err
-    console.log("Connected as Id" + connection.threadId)
-    startPrompt();
-});
+// Database Connect and Starter Title
+connection.connect((error) => {
+    if (error) throw error;
+    console.log(chalk.yellow.bold(`====================================================================================`));
+    console.log(``);
+    console.log(chalk.greenBright.bold(figlet.textSync('Employee Tracker')));
+    console.log(``);
+    console.log(`                                                          ` + chalk.greenBright.bold('Created By: Joseph DeWoody'));
+    console.log(``);
+    console.log(chalk.yellow.bold(`====================================================================================`));
+  });
