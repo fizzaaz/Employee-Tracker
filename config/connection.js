@@ -12,5 +12,5 @@ const db = mysql.createConnection(
     password: process.env.MYSQL_PASSWORD,
     database: 'EmployeeDB'
   },
-  console.log(`Connected to the inventory_db database.`)
+  console.log(`sucessfully Connected to EmployeeDB database.`)
 );
