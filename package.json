@@ -1,0 +1,20 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "cli mysql cms",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fizzaaz/Employee-Tracker.gi.git"
+  },
+  "author": "Fizza Zaidi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fizzaaz/Employee-Tracker.gi/issues"
+  },
+  "homepage": "https://github.com/fizzaaz/Employee-Tracker.gi#readme"
+}
