@@ -5,16 +5,13 @@ const connection = require("./config/connection")
 const chalk = require('chalk');
 const figlet = require('figlet');
 const inquirer = require("inquirer");
-const { listenerCount } = require("events");
-
 
 //========================================================//
 //================== CONNECTING TO DB ====================//
 //========================================================//
 connection.connect((error) => {
     if (error) throw error;
-    header();
-    promptUser();
+   app();
 });
 
 //========================================================//
@@ -44,7 +41,7 @@ const promptUser = () => {
     inquirer.prompt(
         {
             type: "list",
-            name: "questions",
+            name: "choice",
             message: "What would you like to do?",
             choices: [
                 "VIEW ALL EMPLOYEES",
@@ -60,12 +57,204 @@ const promptUser = () => {
                 "DELETE DEPARTMENT",
                 "DELETE ROLE",
                 "DELETE AN EMPLOYEE",
-                "VIEW TOTAL BUDGET OF A DEPARTMENT"
+                "VIEW TOTAL BUDGET OF A DEPARTMENT",
+                "EXIT"
             ]
 
-        }).then(choices => {
-            if (choice === "EMPLOYEES")
-                console.log("kjfkds")
-        })
+        }).then(question => {
 
+            if (question.choice === "VIEW ALL EMPLOYEES")
+            {
+
+            }
+            else if (question.choice === "VIEW ALL ROLES")
+            {
+
+            }
+            else if (question.choice === "VIEW ALL DEPARTMENTS")
+            {
+
+            } 
+            else if (question.choice === "VIEW EMPLOYEES BY MANAGER")
+            {
+
+            } 
+            else if (question.choice === "VIEW EMPLOYEES BY DEPARTMENT")
+            {
+
+            } 
+            else if (question.choice === "ADD A DEPARTMENT")
+            {
+
+            } 
+            else if (question.choice === "ADD A ROLE")
+            {
+
+            } 
+            else if (question.choice === "ADD AN EMPLOYEE")
+            {
+
+            } 
+            else if (question.choice === "UPDATE AN EMPLOYEE'S ROLE")
+            {
+
+            }
+            else if (question.choice === "UPDATE EMPLOYEE'S MANAGERS")
+            {
+
+            }
+            else if (question.choice === "DELETE ROLE")
+            {
+
+            }
+            else if (question.choice === "DELETE AN EMPLOYEE")
+            {
+
+            }
+            else if (question.choice === "DELETE DEPARTMENT")
+            {
+
+            }
+            else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT")
+            {
+
+            }
+            else if (question.choice === "EXIT")
+            {
+
+            }
+        })
+}
+
+
+jpd61
+/
+employee-tracker
+Code
+Issues
+Pull requests
+4
+Actions
+More
+employee-tracker/server.js /
+@jpd61
+jpd61 refactor
+ 1 contributor
+613 lines (556 sloc)  22 KB
+const connection = require('./config/connection');
+const inquirer = require('inquirer');
+const cTable = require('console.table');
+const chalk = require('chalk');
+const figlet = require('figlet');
+const validate = require('./javascript/validate');
+
+// Database Connect and Starter Title
+connection.connect((error) => {
+  if (error) throw error;
+  console.log(chalk.yellow.bold(`====================================================================================`));
+  console.log(``);
+  console.log(chalk.greenBright.bold(figlet.textSync('Employee Tracker')));
+  console.log(``);
+  console.log(`                                                          ` + chalk.greenBright.bold('Created By: Joseph DeWoody'));
+  console.log(``);
+  console.log(chalk.yellow.bold(`====================================================================================`));
+  promptUser();
+});
+
+// Prompt User for Choices
+const promptUser = () => {
+  inquirer.prompt([
+      {
+        name: 'choices',
+        type: 'list',
+        message: 'Please select an option:',
+        choices: [
+          'View All Employees',
+          'View All Roles',
+          'View All Departments',
+          'View All Employees By Department',
+          'View Department Budgets',
+          'Update Employee Role',
+          'Update Employee Manager',
+          'Add Employee',
+          'Add Role',
+          'Add Department',
+          'Remove Employee',
+          'Remove Role',
+          'Remove Department',
+          'Exit'
+          ]
+      }
+    ])
+    .then((answers) => {
+      const {choices} = answers;
+
+        if (choices === 'View All Employees') {
+            viewAllEmployees();
+        }
+
+        if (choices === 'View All Departments') {
+          viewAllDepartments();
+      }
+
+        if (choices === 'View All Employees By Department') {
+            viewEmployeesByDepartment();
+        }
+
+        if (choices === 'Add Employee') {
+            addEmployee();
+        }
+
+        if (choices === 'Remove Employee') {
+            removeEmployee();
+        }
+
+        if (choices === 'Update Employee Role') {
+            updateEmployeeRole();
+        }
+
+        if (choices === 'Update Employee Manager') {
+            updateEmployeeManager();
+        }
+
+        if (choices === 'View All Roles') {
+            viewAllRoles();
+        }
+
+        if (choices === 'Add Role') {
+            addRole();
+        }
+
+        if (choices === 'Remove Role') {
+            removeRole();
+        }
+
+        if (choices === 'Add Department') {
+            addDepartment();
+        }
+
+        if (choices === 'View Department Budgets') {
+            viewDepartmentBudget();
+        }
+
+        if (choices === 'Remove Department') {
+            removeDepartment();
+        }
+
+        if (choices === 'Exit') {
+            connection.end();
+        }
+  });
+};
+
+
+
+
+
+//========================================================//
+//==================== START APP =========================//
+//========================================================//
+const app=()=>{
+    header();
+    promptUser();
 }
