@@ -1,14 +1,18 @@
+const server = require("../../server");
+
 class Department{
 constructor()
 {
-
+    
 }
-    ViewDepartment(connection)
+ViewDepartment(connection)
 {
-    let sqlQuery =`Select * from Department`;
-    connection.promise().query(sqlQuery, function(err, res)  {
+    let sqlQuery =`Select * from department`;
+    connection.query(sqlQuery, (err, res) => {
     if (err) throw err;
-    return res;
+    console.log(res)
+    console.log(server);
+    subHeader("All Departments",res)
 });
 }
 }

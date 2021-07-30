@@ -4,9 +4,11 @@
 const connection = require("./config/connection")
 const chalk = require('chalk');
 const figlet = require('figlet');
+const cTable = require('console.table');
 const inquirer = require("inquirer");
-const Employee=require('./classes/js/Employee')
-const Department=require("./classes/js/Department")
+
+const Employee = require('./classes/js/Employee')
+const Department = require("./classes/js/Department")
 
 //========================================================//
 //=================== CLASS OBJECTS ======================//
@@ -17,7 +19,7 @@ const Department=require("./classes/js/Department")
 //========================================================//
 connection.connect((error) => {
     if (error) throw error;
-   app();
+    app();
 });
 
 //========================================================//
@@ -40,13 +42,13 @@ const header = () => {
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
 
-const subHeader=(heading,res)=>
-{
+function subHeader (heading, res)  {
     console.log(chalk.yellow.bold(`====================================================================================`));
-console.log(`                              ` + chalk.green.bold(heading));
-console.log(chalk.yellow.bold(`====================================================================================`));
-console.table(res);
-console.log(chalk.yellow.bold(`====================================================================================`));
+    console.log(`                              ` + chalk.green.bold(heading));
+    console.log(chalk.yellow.bold(`====================================================================================`));
+    console.log(res)
+    console.table(res);
+    console.log(chalk.yellow.bold(`====================================================================================`));
 }
 //========================================================//
 //==================== PROMPT USER =======================//
@@ -77,65 +79,51 @@ const promptUser = () => {
 
         }).then(question => {
 
-            if (question.choice === "VIEW ALL EMPLOYEES")
-            {
+            if (question.choice === "VIEW ALL EMPLOYEES") {
 
             }
-            else if (question.choice === "VIEW ALL ROLES")
-            {
+            else if (question.choice === "VIEW ALL ROLES") {
 
             }
-            else if (question.choice === "VIEW ALL DEPARTMENTS")
-            {
-                   let dept=new Department;
-                    subHeader("All Departments", dept.ViewDepartment(connection));
-            } 
-            else if (question.choice === "VIEW EMPLOYEES BY MANAGER")
-            {
+            else if (question.choice === "VIEW ALL DEPARTMENTS") {
+                let dept = new Department;
+                dept.ViewDepartment(connection);
+            }
 
-            } 
-            else if (question.choice === "VIEW EMPLOYEES BY DEPARTMENT")
-            {
-
-            } 
-            else if (question.choice === "ADD A DEPARTMENT")
-            {
-
-            } 
-            else if (question.choice === "ADD A ROLE")
-            {
-
-            } 
-            else if (question.choice === "ADD AN EMPLOYEE")
-            {
-
-            } 
-            else if (question.choice === "UPDATE AN EMPLOYEE'S ROLE")
-            {
+            else if (question.choice === "VIEW EMPLOYEES BY MANAGER") {
 
             }
-            else if (question.choice === "UPDATE EMPLOYEE'S MANAGERS")
-            {
+            else if (question.choice === "VIEW EMPLOYEES BY DEPARTMENT") {
 
             }
-            else if (question.choice === "DELETE ROLE")
-            {
+            else if (question.choice === "ADD A DEPARTMENT") {
 
             }
-            else if (question.choice === "DELETE AN EMPLOYEE")
-            {
+            else if (question.choice === "ADD A ROLE") {
 
             }
-            else if (question.choice === "DELETE DEPARTMENT")
-            {
+            else if (question.choice === "ADD AN EMPLOYEE") {
 
             }
-            else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT")
-            {
+            else if (question.choice === "UPDATE AN EMPLOYEE'S ROLE") {
 
             }
-            else if (question.choice === "EXIT")
-            {
+            else if (question.choice === "UPDATE EMPLOYEE'S MANAGERS") {
+
+            }
+            else if (question.choice === "DELETE ROLE") {
+
+            }
+            else if (question.choice === "DELETE AN EMPLOYEE") {
+
+            }
+            else if (question.choice === "DELETE DEPARTMENT") {
+
+            }
+            else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT") {
+
+            }
+            else if (question.choice === "EXIT") {
 
             }
         })
@@ -147,7 +135,8 @@ const promptUser = () => {
 //========================================================//
 //==================== START APP =========================//
 //========================================================//
-const app=()=>{
+const app = () => {
     header();
     promptUser();
 }
+module.exports = { subHeader };
