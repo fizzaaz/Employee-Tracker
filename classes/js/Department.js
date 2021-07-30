@@ -1,20 +1,34 @@
 const server = require("../../server");
+const cTable = require('console.table');
 
 class Department{
-constructor()
+constructor(NAME)
 {
-    
+    this.NAME=NAME;
 }
+
+//get Department Name
+getDeptName()
+{
+    return this.NAME;
+}
+// VIEW AL DEPARTMENTS
 ViewDepartment(connection)
 {
-    let sqlQuery =`Select * from department`;
+    let sqlQuery =`Select id AS ID,name as DEPARTMENT from department`;
     connection.query(sqlQuery, (err, res) => {
     if (err) throw err;
-    console.log(res)
-    console.log(server);
-    subHeader("All Departments",res)
+    console.table(res);
 });
 }
+
+//Add new Department
+AddDepartment(connection,Name)
+{
+    let sqlQuery=`INSERT INTO department (name) VALUES (?);`
+    connection.query(sqlQuery, Name,(err, res) => {
+        if (err) throw err;});}
 }
+
 
 module.exports=Department;

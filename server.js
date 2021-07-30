@@ -42,12 +42,11 @@ const header = () => {
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
 
-function subHeader (heading, res)  {
-    console.log(chalk.yellow.bold(`====================================================================================`));
-    console.log(`                              ` + chalk.green.bold(heading));
-    console.log(chalk.yellow.bold(`====================================================================================`));
-    console.log(res)
-    console.table(res);
+const tHeader =(heading)=>  {
+    console.log(``);
+    console.log(``);
+    console.log(chalk.yellowBright.bold(`====================================================================================`));
+    console.log(`                              ` + chalk.magenta.bold(heading));
     console.log(chalk.yellow.bold(`====================================================================================`));
 }
 //========================================================//
@@ -86,18 +85,21 @@ const promptUser = () => {
 
             }
             else if (question.choice === "VIEW ALL DEPARTMENTS") {
-                let dept = new Department;
+                tHeader("View Departments")
+                let dept = new Department("abc");
                 dept.ViewDepartment(connection);
+                console.log(``);
+                promptUser();
             }
 
-            else if (question.choice === "VIEW EMPLOYEES BY MANAGER") {
+            else if (question.choice === "VIEF4SW EMPLOYEES BY MANAGER") {
 
             }
             else if (question.choice === "VIEW EMPLOYEES BY DEPARTMENT") {
 
             }
             else if (question.choice === "ADD A DEPARTMENT") {
-
+                addDept();
             }
             else if (question.choice === "ADD A ROLE") {
 
@@ -129,7 +131,26 @@ const promptUser = () => {
         })
 }
 
+//ASK FOR DEPARTMENT NAME
+const addDept=()=>
+{
 
+inquirer.prompt({
+    
+        type: "input",
+        name: "deptName",
+        message: "Enter the new Department Name"
+}).then(Response=>
+    {
+        tHeader("Add New Department")
+        let dept = new Department(Response.deptName);
+        dept.AddDepartment(connection,dept.getDeptName());
+        console.log(``);
+        console.log(chalk.magenta.bold('Sucessfully New Department is Added'));
+        console.log(``);
+            promptUser();
+    })
+}
 
 
 //========================================================//
@@ -139,4 +160,3 @@ const app = () => {
     header();
     promptUser();
 }
-module.exports = { subHeader };

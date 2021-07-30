@@ -8,7 +8,7 @@ VALUE ("Finance");
 INSERT INTO department (name)
 VALUE ("Legal");
 
--- ADDING DATA TO DEPARTMENT TABLE--
+-- ADDING DATA TO ROLE TABLE--
 INSERT INTO role (title, salary, department_id)
 VALUE ("Lead Engineer", 150000, 2);
 INSERT INTO role (title, salary, department_id)
