@@ -5,7 +5,8 @@ const connection = require("./config/connection")
 const chalk = require('chalk');
 const figlet = require('figlet');
 const inquirer = require("inquirer");
-const queries=require('./assets/js/Employee')
+const Employee=require('./classes/js/Employee')
+const Department=require("./classes/js/Department")
 
 //========================================================//
 //================== CONNECTING TO DB ====================//
@@ -35,6 +36,14 @@ const header = () => {
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
 
+const subHeader=(heading,res)=>
+{
+    console.log(chalk.yellow.bold(`====================================================================================`));
+console.log(`                              ` + chalk.green.bold(heading));
+console.log(chalk.yellow.bold(`====================================================================================`));
+console.table(res);
+console.log(chalk.yellow.bold(`====================================================================================`));
+}
 //========================================================//
 //==================== PROMPT USER =======================//
 //========================================================//
@@ -74,7 +83,8 @@ const promptUser = () => {
             }
             else if (question.choice === "VIEW ALL DEPARTMENTS")
             {
-
+                   
+                    subHeader("All Departments", Department.ViewDepartment());
             } 
             else if (question.choice === "VIEW EMPLOYEES BY MANAGER")
             {
