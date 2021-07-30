@@ -84,7 +84,7 @@ const promptUser = () => {
             else if (question.choice === "VIEW ALL DEPARTMENTS")
             {
                    
-                    subHeader("All Departments", Department.ViewDepartment());
+                    subHeader("All Departments", Department.ViewDepartment(connection));
             } 
             else if (question.choice === "VIEW EMPLOYEES BY MANAGER")
             {
