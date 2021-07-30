@@ -1,17 +1,15 @@
 class Department{
-constructor (id,name)
+constructor()
 {
-this.id=id;
-this.name=name;
+
 }
-ViewDepartment(connection)
+    ViewDepartment(connection)
 {
     let sqlQuery =`Select * from Department`;
-    connection.promise().query(sqlQuery, (err, res) => {
+    connection.promise().query(sqlQuery, function(err, res)  {
     if (err) throw err;
+    return res;
 });
-return res;
-
 }
 }
 

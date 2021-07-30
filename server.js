@@ -9,6 +9,10 @@ const Employee=require('./classes/js/Employee')
 const Department=require("./classes/js/Department")
 
 //========================================================//
+//=================== CLASS OBJECTS ======================//
+//========================================================//
+
+//========================================================//
 //================== CONNECTING TO DB ====================//
 //========================================================//
 connection.connect((error) => {
@@ -83,8 +87,8 @@ const promptUser = () => {
             }
             else if (question.choice === "VIEW ALL DEPARTMENTS")
             {
-                   
-                    subHeader("All Departments", Department.ViewDepartment(connection));
+                   let dept=new Department;
+                    subHeader("All Departments", dept.ViewDepartment(connection));
             } 
             else if (question.choice === "VIEW EMPLOYEES BY MANAGER")
             {
