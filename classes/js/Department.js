@@ -27,8 +27,18 @@ AddDepartment(connection,Name)
 {
     let sqlQuery=`INSERT INTO department (name) VALUES (?);`
     connection.query(sqlQuery, Name,(err, res) => {
-        if (err) throw err;});}
-}
+        if (err) throw err;});
+    }
+ 
+ DeleteDepartment(connection,name) 
+ {
+  let sqlQuery= `DELETE FROM DEPARTMENT WHERE name=?`;
+  connection.query(sqlQuery,name,(err,res)=>
+  {
+    if (err) throw err;
+  })   
+ }  
+    }
 
 
 module.exports=Department;

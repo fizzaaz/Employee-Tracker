@@ -88,10 +88,7 @@ const promptUser = () => {
                 tHeader("View Departments")
                 let dept = new Department("abc");
                 dept.ViewDepartment(connection);
-                console.log(``);
-                promptUser();
             }
-
             else if (question.choice === "VIEF4SW EMPLOYEES BY MANAGER") {
 
             }
@@ -120,7 +117,8 @@ const promptUser = () => {
 
             }
             else if (question.choice === "DELETE DEPARTMENT") {
-
+dept=new Department("Fire");
+dept.DeleteDepartment(connection,getDeptName());
             }
             else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT") {
 
