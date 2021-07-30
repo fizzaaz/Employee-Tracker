@@ -1,0 +1,11 @@
+class Employee
+{
+constructor()
+{
+
+}
+ViewEmployee=()=>
+{
+
+}
+}

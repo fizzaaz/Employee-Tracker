@@ -5,7 +5,7 @@ const connection = require("./config/connection")
 const chalk = require('chalk');
 const figlet = require('figlet');
 const inquirer = require("inquirer");
-const queries=require('queries.js')
+const queries=require('./assets/js/Employee')
 
 //========================================================//
 //================== CONNECTING TO DB ====================//
