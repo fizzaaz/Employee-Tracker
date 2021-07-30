@@ -4,8 +4,9 @@ constructor()
 {
 
 }
-ViewEmployee=()=>
+ViewEmployee()
 {
 
 }
 }
+module.exports=Employee;
