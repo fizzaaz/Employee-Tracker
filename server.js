@@ -127,20 +127,7 @@ const promptUser = () => {
 }
 
 
-jpd61
-/
-employee-tracker
-Code
-Issues
-Pull requests
-4
-Actions
-More
-employee-tracker/server.js /
-@jpd61
-jpd61 refactor
- 1 contributor
-613 lines (556 sloc)  22 KB
+
 const connection = require('./config/connection');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
