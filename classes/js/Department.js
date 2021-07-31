@@ -1,4 +1,3 @@
-const server = require("../../server");
 const cTable = require('console.table');
 
 class Department{
@@ -36,7 +35,7 @@ AddDepartment(connection,Name)
   connection.query(sqlQuery,name,(err,res)=>
   {
     if (err) throw err;
-  })   
+  })
  }  
     }
 

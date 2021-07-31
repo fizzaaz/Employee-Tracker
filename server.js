@@ -11,10 +11,6 @@ const Employee = require('./classes/js/Employee')
 const Department = require("./classes/js/Department")
 
 //========================================================//
-//=================== CLASS OBJECTS ======================//
-//========================================================//
-
-//========================================================//
 //================== CONNECTING TO DB ====================//
 //========================================================//
 connection.connect((error) => {
@@ -42,7 +38,7 @@ const header = () => {
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
 
-const tHeader =(heading)=>  {
+const tHeader = (heading) => {
     console.log(``);
     console.log(``);
     console.log(chalk.yellowBright.bold(`====================================================================================`));
@@ -117,39 +113,65 @@ const promptUser = () => {
 
             }
             else if (question.choice === "DELETE DEPARTMENT") {
-dept=new Department("Fire");
-dept.DeleteDepartment(connection,getDeptName());
+                deleteDept();
             }
             else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT") {
 
             }
             else if (question.choice === "EXIT") {
+                process.exit();
 
             }
         })
 }
 
 //ASK FOR DEPARTMENT NAME
-const addDept=()=>
-{
+const addDept = () => {
 
-inquirer.prompt({
-    
+    inquirer.prompt({
+
         type: "input",
         name: "deptName",
         message: "Enter the new Department Name"
-}).then(Response=>
-    {
+    }).then(Response => {
         tHeader("Add New Department")
         let dept = new Department(Response.deptName);
-        dept.AddDepartment(connection,dept.getDeptName());
+        dept.AddDepartment(connection, dept.getDeptName());
         console.log(``);
         console.log(chalk.magenta.bold('Sucessfully New Department is Added'));
         console.log(``);
-            promptUser();
+        promptUser();
     })
 }
-
+const deleteDept = () => {
+    var depts = [];
+    let sqlQuery = `Select name from department`;
+    connection.query(sqlQuery, (err, res) => {
+        if (err) throw err;
+        for (let i = 0; i < res.length; i++) {
+            depts.push(res[i].name);
+        }
+        console.log(depts);
+        inquirer.prompt({
+            type: "list",
+            name: "Departments",
+            message: "Choose the Department you would like to delete?",
+            choices: depts
+        }).then(response => {
+            for (let i = 0; i < depts.length; i++) {
+                if (response.Departments == depts[i]) {
+                    let dept = new Department(response.Departments);
+                    dept.DeleteDepartment(connection, dept.getDeptName())
+                    break;
+                }
+            }
+            console.log(``);
+            console.log(chalk.magenta.bold('Sucessfully New Department is Added'));
+            console.log(``);
+            promptUser();
+        })
+    });
+}
 
 //========================================================//
 //==================== START APP =========================//
