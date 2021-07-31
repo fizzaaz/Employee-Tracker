@@ -75,7 +75,10 @@ function promptUser() {
         }).then(question => {
             if (question.choice === "VIEW ALL EMPLOYEES")
             {
-
+tHeader("View All Employees");
+let emp=new Employee(1,"a","b",1,2);
+emp.ViewEmployee(connection);
+promptUser();
             }
             else if (question.choice === "VIEW ALL ROLES") {
 
