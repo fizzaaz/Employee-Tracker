@@ -35,9 +35,11 @@
   
 💻 Below is the gif showing the functionality of the application:
   
-![DeWoody Employee Tracker](./assets/employee-tracker.gif)
-  
-🎥 The full movie file showing functionality of the application can be found [here](./assets/employee-tracker.webm)  
+![DeWoody Employee Tracker](./assets/DEMO/demo.gif)
+
+## Entity Relational Diagram
+![ER](./assets/images/ER.JPG)
+
   
 ## User Requirements
   
