@@ -33,6 +33,24 @@ class Role{
          console.table(res);
     })
     }
+    addRole(connection,title,salary,dept)
+{
+    let role=[];
+    role.push(title);
+    role.push(salary);
+    role.push(dept);
+    let sqlQuery=`INSERT INTO role(title,salary,department_id) VALUES (?,?,?)`;
+    connection.query(sqlQuery,role ,(err, res) => {
+        if (err) throw err;});
+}
+updateRole(connection,newID,oldRole)
+{
+    connection.query(
+        `UPDATE employee SET role_id = ${newID} WHERE id = ${oldRole}`, (err, res) => {
+          if (err) throw err;
+        }
+      )
+}
 
 }
 module.exports=Role;

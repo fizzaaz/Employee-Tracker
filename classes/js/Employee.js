@@ -1,4 +1,5 @@
 const cTable = require('console.table');
+const connection = require('../../config/connection');
 
 class Employee
 {
@@ -73,6 +74,20 @@ addEmployee(connection,fn,ln,rID,mgrID)
     let sqlQuery=`INSERT INTO Employee(first_name,last_name,role_id,manager_id) VALUES (?,?,?,?)`;
     connection.query(sqlQuery,emp ,(err, res) => {
         if (err) throw err;});
+}
+DeleteEmp(connection,employeeID){
+    connection.query(`DELETE FROM employee WHERE id = ${employeeID}`, (err, res) => {
+        console.table(response);
+});
+}
+
+updateMgr(connection,newMgr,oldMgr)
+{
+    connection.query(
+        `UPDATE employee SET manager_id = ${newMgr} WHERE id = ${oldMgr}`, (err, res) => {
+          if (err) throw err;
+        }
+      )
 }
 }
 module.exports=Employee;
