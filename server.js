@@ -410,7 +410,8 @@ const UpdateMgr = () => {
                 let idCode = parseInt(response.update);
                 let managerCode = parseInt(response.manager);
                 let e = new Employee(1, "SDad", "Ds", 1, 2);
-                e.UpdateMgr(connection, managerCode, idCode);
+                e.updateMgr(connection, managerCode, idCode);
+                promptUser();
 
             })
     })
