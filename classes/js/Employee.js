@@ -10,6 +10,26 @@ this.ln=ln;
 this.rid=rid;
 this.mid=mid;
 }
+getID()
+{
+    return this.id;
+}
+getfirstName()
+{
+    return this.fn;
+}
+getLastName()
+{
+    return this.ln;
+}
+getrid()
+{
+    return this.rid;
+}
+getMgrID()
+{
+    return this.mid;
+}
 ViewEmployee(connection)
 {
     let sqlQuery =`Select e.id AS ID,CONCAT(e.first_name,' ', e.last_name) AS NAME, 
@@ -22,10 +42,36 @@ ViewEmployee(connection)
      console.table(res);
 })
 }
-addEmployee(connection,Name)
+ViewEmployeeByMgr(connection)
 {
-    let sqlQuery=`INSERT INTO department (name) VALUES (?);`
-    connection.query(sqlQuery, Name,(err, res) => {
+    let sqlQuery =`Select e.id AS ID,CONCAT(e.first_name,' ', e.last_name) AS EmployeeNAME, 
+    CONCAT(m.first_name,' ',m.last_name) AS MANAGER
+    from employee e LEFT JOIN employee m ON m.id=e.manager_id
+    ORDER BY e.ID ASC`;
+    connection.query(sqlQuery, (err, res) => {
+    if (err) {throw err}
+     console.table(res);
+})
+}
+ViewEmployeeByDpt(connection)
+{
+    let sqlQuery =`Select e.id AS ID,CONCAT(e.first_name,' ', e.last_name) AS NAME, 
+    d.name AS DEPARTMENT from employee e LEFT JOIN role r ON r.id=e.role_id LEFT JOIN department d ON d.id=r.department_id ORDER BY e.ID ASC`;
+    connection.query(sqlQuery, (err, res) => {
+    if (err) {throw err}
+     console.table(res);
+})
+}
+addEmployee(connection,fn,ln,rID,mgrID)
+{
+    let emp=[];
+    emp.push(fn);
+    emp.push(ln);
+    emp.push(rID);
+    emp.push(mgrID);
+    console.log(emp)
+    let sqlQuery=`INSERT INTO Employee(first_name,last_name,role_id,manager_id) VALUES (?,?,?,?)`;
+    connection.query(sqlQuery,emp ,(err, res) => {
         if (err) throw err;});
 }
 }
