@@ -9,8 +9,7 @@ const inquirer = require("inquirer");
 
 const Employee = require('./classes/js/Employee')
 const Department = require("./classes/js/Department");
-const { listenerCount } = require("events");
-
+const Role=require("./classes/js/Role")
 //========================================================//
 //================== CONNECTING TO DB ====================//
 //========================================================//
@@ -81,7 +80,11 @@ function promptUser() {
                 promptUser();
             }
             else if (question.choice === "VIEW ALL ROLES") {
-
+              
+                    tHeader("View All Roles");
+                    let role = new Role(1, "a", 2, 100, 2);
+                    role.ViewRoles(connection);
+                    promptUser();
             }
             else if (question.choice === "VIEW ALL DEPARTMENTS") {
                 tHeader("View Departments")
