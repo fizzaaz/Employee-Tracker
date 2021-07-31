@@ -8,7 +8,7 @@ const cTable = require('console.table');
 const inquirer = require("inquirer");
 
 const Employee = require('./classes/js/Employee')
-const Department = require("./classes/js/Department")
+const Department = require("./classes/js/Department");
 
 //========================================================//
 //================== CONNECTING TO DB ====================//
@@ -38,7 +38,7 @@ const header = () => {
     console.log(chalk.magenta.bold(`====================================================================================`));
 }
 
-const tHeader = (heading) => {
+const tHeader =(heading)=>  {
     console.log(``);
     console.log(``);
     console.log(chalk.yellowBright.bold(`====================================================================================`));
@@ -48,7 +48,7 @@ const tHeader = (heading) => {
 //========================================================//
 //==================== PROMPT USER =======================//
 //========================================================//
-const promptUser = () => {
+function promptUser() {
     inquirer.prompt(
         {
             type: "list",
@@ -73,8 +73,8 @@ const promptUser = () => {
             ]
 
         }).then(question => {
-
-            if (question.choice === "VIEW ALL EMPLOYEES") {
+            if (question.choice === "VIEW ALL EMPLOYEES")
+            {
 
             }
             else if (question.choice === "VIEW ALL ROLES") {
@@ -82,10 +82,14 @@ const promptUser = () => {
             }
             else if (question.choice === "VIEW ALL DEPARTMENTS") {
                 tHeader("View Departments")
-                let dept = new Department("abc");
+                let dept = new Department("abc");       
                 dept.ViewDepartment(connection);
+               
+                 promptUser();
+                
+               
             }
-            else if (question.choice === "VIEF4SW EMPLOYEES BY MANAGER") {
+            else if (question.choice === "VIEW EMPLOYEES BY MANAGER") {
 
             }
             else if (question.choice === "VIEW EMPLOYEES BY DEPARTMENT") {
@@ -113,7 +117,7 @@ const promptUser = () => {
 
             }
             else if (question.choice === "DELETE DEPARTMENT") {
-                deleteDept();
+           deleteDept();
             }
             else if (question.choice === "VIEW TOTAL BUDGET OF A DEPARTMENT") {
 
@@ -122,57 +126,78 @@ const promptUser = () => {
                 process.exit();
 
             }
+            console.log(``);
+
         })
 }
 
+
 //ASK FOR DEPARTMENT NAME
-const addDept = () => {
-
-    inquirer.prompt({
-
+const addDept=()=>
+{
+inquirer.prompt({
+    
         type: "input",
         name: "deptName",
         message: "Enter the new Department Name"
-    }).then(Response => {
+}).then(Response=>
+    {
         tHeader("Add New Department")
         let dept = new Department(Response.deptName);
-        dept.AddDepartment(connection, dept.getDeptName());
+        dept.AddDepartment(connection,dept.getDeptName());
         console.log(``);
         console.log(chalk.magenta.bold('Sucessfully New Department is Added'));
         console.log(``);
-        promptUser();
+            promptUser();
     })
 }
-const deleteDept = () => {
-    var depts = [];
-    let sqlQuery = `Select name from department`;
+const deleteDept=()=>
+{    var depts=[];
+    let sqlQuery =`Select name from department`;
     connection.query(sqlQuery, (err, res) => {
-        if (err) throw err;
-        for (let i = 0; i < res.length; i++) {
-            depts.push(res[i].name);
+    if (err) throw err;
+    for (let i=0;i<res.length;i++)
+    {
+        depts.push(res[i].name);
+    }
+    inquirer.prompt({
+        type:"list",
+            name:"Departments",
+        message:"Choose the Department you would like to delete?",
+        choices: depts
+    }).then(response=>{
+        for (let i=0;i<depts.length;i++)
+        {
+        if(response.Departments==depts[i])
+        {
+            let dept=new Department(response.Departments);
+            dept.DeleteDepartment(connection,dept.getDeptName())
+       break;
         }
-        console.log(depts);
-        inquirer.prompt({
-            type: "list",
-            name: "Departments",
-            message: "Choose the Department you would like to delete?",
-            choices: depts
-        }).then(response => {
-            for (let i = 0; i < depts.length; i++) {
-                if (response.Departments == depts[i]) {
-                    let dept = new Department(response.Departments);
-                    dept.DeleteDepartment(connection, dept.getDeptName())
-                    break;
-                }
-            }
-            console.log(``);
-            console.log(chalk.magenta.bold('Sucessfully New Department is Added'));
-            console.log(``);
-            promptUser();
-        })
+}
+console.log(``);
+console.log(chalk.magenta.bold('New Department is Sucessfully Deleted'));
+console.log(``);
+promptUser();
+    } )
     });
 }
 
+// VIEW AL DEPARTMENTS
+function ViewDepartment(connection)
+{
+    let sqlQuery =`Select id AS ID,name as DEPARTMENT from department`;
+    connection.query(sqlQuery, (err, res) => {
+    if (err) {throw err
+    }    
+     console.table(res);
+
+})
+console.log(``);
+console.log(chalk.magenta.bold('New Department is Sucessfully Deleted'));
+console.log(``);
+     promptUser();
+}
 //========================================================//
 //==================== START APP =========================//
 //========================================================//
@@ -180,3 +205,7 @@ const app = () => {
     header();
     promptUser();
 }
+module.exports={
+    ask: function(){
+    promptUser();}
+};

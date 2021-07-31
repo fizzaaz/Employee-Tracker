@@ -1,5 +1,5 @@
+const { triggerAsyncId } = require('async_hooks');
 const cTable = require('console.table');
-
 class Department{
 constructor(NAME)
 {
@@ -16,9 +16,9 @@ ViewDepartment(connection)
 {
     let sqlQuery =`Select id AS ID,name as DEPARTMENT from department`;
     connection.query(sqlQuery, (err, res) => {
-    if (err) throw err;
-    console.table(res);
-});
+    if (err) {throw err}
+     console.table(res);
+})
 }
 
 //Add new Department
@@ -27,7 +27,7 @@ AddDepartment(connection,Name)
     let sqlQuery=`INSERT INTO department (name) VALUES (?);`
     connection.query(sqlQuery, Name,(err, res) => {
         if (err) throw err;});
-    }
+  }
  
  DeleteDepartment(connection,name) 
  {
